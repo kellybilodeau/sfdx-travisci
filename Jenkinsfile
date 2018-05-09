@@ -3,7 +3,7 @@ node {
     def CONNECTED_APP_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH
 
     environment {
-        tool name: 'sfdx', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
+        SFDX_LOCAL = tool name: 'sfdx', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
     }
 
     stage('checkout git source') {
@@ -13,7 +13,7 @@ node {
     withCredentials([file(credentialsId: 'git-jenkins-sfdx-test', variable: 'jwt_key_file')]) {
         stage('Authorizing') {
 		    sh 'export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true'
-            sh '${sfdx}/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername -a HubOrg'
+            sh '${sfdx_local}/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername -a HubOrg'
         }
     }
 }
