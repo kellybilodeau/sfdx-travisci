@@ -18,7 +18,7 @@ pipeline {
                     export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true
                     /usr/local/lib/sfdx/bin/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername -a HubOrg
                 
-                    /usr/local/lib/sfdx/bin/sfdx force:org:create --definitionfile config/workspace-scratch-def.json --json --setdefaultusername
+                    /usr/local/lib/sfdx/bin/sfdx force:org:create --definitionfile config/project-scratch-def.json --json --setdefaultusername
                 '''
             }
         }
