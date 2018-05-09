@@ -13,12 +13,12 @@ node {
 
     withCredentials([file(credentialsId: 'git-jenkins-sfdx-test', variable: 'jwt_key_file')]) {
         stage('Authorizing') {
-		    sh """
-                echo $HUB_ORG
-                export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true'
-                /usr/local/lib/sfdx/bin/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername -a HubOrg
+		    // sh """
+            //     echo $HUB_ORG
+            //     export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true'
+            //     /usr/local/lib/sfdx/bin/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername -a HubOrg
        
-            """
+            // """
             
          }
     }
