@@ -1,8 +1,8 @@
 #!groovy
 node {
     environment {
-        HUB_ORG=env.HUB_ORG_DH
-        CONNECTED_APP_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH
+        HUB_ORG=${env.HUB_ORG_DH}
+        CONNECTED_APP_CONSUMER_KEY=${env.CONNECTED_APP_CONSUMER_KEY_DH}
 
         SFDX_LOCAL = tool 'sfdx'
     }
@@ -14,7 +14,7 @@ node {
     withCredentials([file(credentialsId: 'git-jenkins-sfdx-test', variable: 'jwt_key_file')]) {
         stage('Authorizing') {
 		    sh """
-                echo ${CONNECTED_APP_CONSUMER_KEY} 
+                echo $HUB_ORG
                 export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true'
                 /usr/local/lib/sfdx/bin/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername -a HubOrg
        
