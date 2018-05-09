@@ -86,7 +86,7 @@ node {
 		    sh '''
                 echo $HUB_ORG
                 echo $CONNECTED_APP_CONSUMER_KEY
-                export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true'
+                export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true
                 /usr/local/lib/sfdx/bin/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername -a HubOrg
             '''
          }
