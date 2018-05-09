@@ -10,5 +10,9 @@ node {
         checkout scm
     }
 
-
+    withCredentials([file(credentialsId: 'git-jenkins-sfdx-test', variable: 'jwt_key_file')]) {
+        stage('Authorizing') {
+		    sh 'export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true'
+        }
+    }
 }
