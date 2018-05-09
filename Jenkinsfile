@@ -72,10 +72,6 @@
 
 
 node {
-    environment {
-        HUB_ORG="${env.HUB_ORG_DH}"
-        CONNECTED_APP_CONSUMER_KEY="${env.CONNECTED_APP_CONSUMER_KEY_DH}"
-    }
 
     stage('checkout git source') {
         checkout scm
@@ -83,6 +79,10 @@ node {
 
     withCredentials([file(credentialsId: 'git-jenkins-sfdx-test', variable: 'jwt_key_file')]) {
         stage('Authorizing') {
+                environment {
+        HUB_ORG="${env.HUB_ORG_DH}"
+        CONNECTED_APP_CONSUMER_KEY="${env.CONNECTED_APP_CONSUMER_KEY_DH}"
+    }
 		    sh '''
                 echo $HUB_ORG
                 echo $CONNECTED_APP_CONSUMER_KEY
