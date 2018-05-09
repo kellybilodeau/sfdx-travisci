@@ -71,7 +71,6 @@
 // }
 
 
-#!groovy
 node {
     environment {
         HUB_ORG="${env.HUB_ORG_DH}"
